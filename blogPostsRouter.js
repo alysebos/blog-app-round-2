@@ -26,8 +26,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', jsonParser, (req, res) => {
-	if (checkFields(req.body)) {
-		let msg = `${checkFields(req.body)} not specified`;
+	const missingField = checkFields(req.body);
+	if (missingField) {
+		let msg = `${missingField} not specified`;
 		console.error(msg);
 		res.status(400).send(msg);
 	} else {
@@ -52,8 +53,9 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', jsonParser, (req, res) => {
 	const id = req.params.id;
-	if (checkFields(req.body)) {
-		let msg = `${checkFields(req.body)} not specified`;
+	const missingField = checkFields(req.body);
+	if (missingField) {
+		let msg = `${missingField} not specified`;
 		console.error(msg);
 		res.status(400).send(msg);
 	} else {
