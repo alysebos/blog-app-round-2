@@ -6,7 +6,7 @@ const jsonParser = bodyParser.json();
 
 const { BlogPosts } = require('./models');
 
-const checkFields = require('./post-checker');
+const { checkFields, checkUpdateFields } = require('./post-checker');
 
 // Create fake posts
 BlogPosts.create("Alyse Rocks", "For real Alyse is the best. You wouldn't believe how amazing she is.", "Alyse", "October 3rd");
@@ -48,17 +48,22 @@ router.delete('/:id', (req, res) => {
 	BlogPosts.delete(id);
 	msg = `Blog post with id ${id} has been deleted`;
 	console.log(msg);
-	res.status(201).send(msg);
+	res.status(204).send(msg);
 })
 
 router.put('/:id', jsonParser, (req, res) => {
 	const id = req.params.id;
-	const missingField = checkFields(req.body);
+	const missingField = checkUpdateFields(req.body);
 	if (missingField) {
 		let msg = `${missingField} not specified`;
 		console.error(msg);
 		res.status(400).send(msg);
-	} else {
+	}  else if (id !== req.body.id) {
+		let msg = `Request body id (${req.body.id}) and path ID ${id} must be the same`;
+		console.error(msg);
+		res.status(400).send(msg);
+	}
+	else {
 	console.log(`updating post ${id}`);
 		post = BlogPosts.posts.find(x => (x.id === id));
 		Object.assign(post, {title: req.body.title, content: req.body.content, author: req.body.author, publishDate: req.body.publishDate || post.publishDate});
