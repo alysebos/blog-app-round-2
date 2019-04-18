@@ -6,6 +6,8 @@ const jsonParser = bodyParser.json();
 
 const { BlogPosts } = require('./models');
 
+const checkFields = require('./post-checker');
+
 // Create fake posts
 BlogPosts.create("Alyse Rocks", "For real Alyse is the best. You wouldn't believe how amazing she is.", "Alyse", "October 3rd");
 BlogPosts.create("Alex sucks", "For real Alex is the worst. You wouldn't believe how terrible he is", "Alex");
@@ -22,16 +24,6 @@ router.get('/', (req, res) => {
 	console.log('retreiving posts');
 	res.json(BlogPosts.get());
 })
-
-function checkFields (reqBody) {
-	const reqFields = ["title", "content", "author"];
-	for (let i = 0; i < reqFields.length; i++) {
-		let field = reqFields[i];
-		if (!(field in reqBody)) {
-			return field;
-		}
-	}
-}
 
 router.post('/', jsonParser, (req, res) => {
 	if (checkFields(req.body)) {
