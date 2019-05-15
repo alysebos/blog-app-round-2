@@ -1,0 +1,9 @@
+language: node_js
+node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: MYRyGi6ZbgVujJ0JSwqlPEQ6wnvbpM4jbOAhluV13Ud87FElTRxo/ji5JKOjCkJhzdhj1ujVnkGIJjOsizOKy4Ri960TCHQcjM+vQTtsJRFv2Bh39oTx0Vc41Z8t2ufKgVvjC7PlIcwT3VzeFckhBfNKrZx72ziYI0fTTFzwfvmU4Y2qlLYTEaCIB8oe636xQWAeXJAKM9vlJUNWiKlErYe8sVKEK4iZG89OZ4IZuA6MRPjGovWuhUFUC6HMUCVko9OXjQWHEtzVLx/xX3M6oiYKk0H0sO+Eoq7ov2rQtA3N9O/m6WCnd+C0XLkDGNT1/wmaeIlxunhZy5EbtG7GigdAncHW5xj6dzBuVWjtMJnKoS1c+BO7/UtNCBYD4d5o0g9vh24fkd3iaGON/C9z1bT7TOGR8laDXgZjwDKH6tUZyHnT+2Kd68njeHEFxbNwDdIoyaAUkNlAGL7/nAp9cTXRkoVN34Vyr0wp7t3HR7og+8hN7My9u020KElx/E1ud6ZHVleMpO5pwpyHn9RYxqWvRHDFH9xsYNqdXwNvKgyr9u8e1jqqPHdzHKkVSRNChuOdN54ENN93ajn670C4ZP1ir+KH8uqbx8LGhIWwdqIKiFpW/T1d1CbgZAafsOk0UnSH6/+9C/wTE2HFa2Y9D+4Y6tKecs9VVhKaA/nB2G0=
+  app: ancient-mesa-55318
+  on:
+    repo: alysebos/blog-app-round-2
