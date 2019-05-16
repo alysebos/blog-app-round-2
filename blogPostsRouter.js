@@ -48,7 +48,7 @@ router.delete('/:id', (req, res) => {
 	BlogPosts.delete(id);
 	msg = `Blog post with id ${id} has been deleted`;
 	console.log(msg);
-	res.status(204).send(msg);
+	res.status(204).end();
 })
 
 router.put('/:id', jsonParser, (req, res) => {
